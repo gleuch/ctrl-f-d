@@ -1,0 +1,23 @@
+Ctrl+F'd
+
+A GreaseMonkey script to censor text on a web page, in the Rush Limbaugh style.
+by Greg Leuch <http://www.gleuch.com>
+
+------------------------------------------------------------------------------------
+
+Why Rush, you ask? Read this: http://www.gleuch.com/play/ctrl-f-d
+
+
+
+INSTALL
+------------------------------------------------------------------------------------
+Download the XPI in Firefox, or use the .js file and load into Greasemonkey.
+
+Enjoy!
+
+
+
+
+LICENSE
+------------------------------------------------------------------------------------
+Creative Commons BY-SA <http://creativecommons.org/licenses/by-sa/3.0/us>
