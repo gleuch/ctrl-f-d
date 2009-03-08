@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name Ctrl+F'd
-// @namespace by halvfet <http://www.halvfet.com>
+// @namespace by Greg Leuch <http://www.gleuch.com>
 // @description Rush Limbaugh believes a censored internet can't be Ctrl+F'd (or Cmd+F for Mac users).
 // @include *
 // ==/UserScript==
@@ -8,11 +8,11 @@
 /*
   Ctrl+F'd
   A GreaseMonkey script to censor text on a web page, in the Rush Limbaugh style.
-  by Greg Leuch <http://www.halvfet.com>
+  by Greg Leuch <http://www.gleuch.com>
  
   ------------------------------------------------------------------------------------
  
-  Why Rush, you ask? Read this: http://mediamatters.org/items/200902130016
+  Why Rush, you ask? Read this: http://www.gleuch.com/play/ctrl-f-d
  
 */
 

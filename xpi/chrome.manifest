@@ -1,0 +1,2 @@
+content	ctrlfd	content/
+overlay	chrome://browser/content/browser.xul	chrome://ctrlfd/content/script-compiler-overlay.xul
