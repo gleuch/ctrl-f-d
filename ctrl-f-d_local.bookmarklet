@@ -1,0 +1,1 @@
+javascript:function%20load_ctrlfd(u)%7Bvar%20d=new%20Date(),s=document.createElement('script');s.setAttribute('language','JavaScript');s.setAttribute('src',u+'&_='+d.getTime());document.body.appendChild(s);%7Dload_ctrlfd('http://assets.gleuch.com/projects/ctrl-f-d/ctrl-f-d.js?v=2');
