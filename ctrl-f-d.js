@@ -10,7 +10,7 @@
 */
 
 
-Array.prototype.in_array = function(p_val, sensitive) {for(var i = 0, l = this.length; i < l; i++) {if ((sensitive && this[i] == p_val) || (!sensitive && this[i].toLowerCase() == p_val.toLowerCase())) {return true;}} return false;}
+Array.prototype.in_array = function(p_val, sensitive) {for(var i = 0, l = this.length; i < l; i++) {if ((sensitive && this[i] == p_val) || (!sensitive && this[i].toLowerCase() == p_val.toLowerCase())) {return true;}} return false;};
 function rgb2hex(rgb) {rgb = rgb.replace(/\s/g, "").replace(/^(rgb\()(\d+),(\d+),(\d+)(\))$/, "$2|$3|$4").split("|"); return "#" + hex(rgb[0]) + hex(rgb[1]) + hex(rgb[2]);} 
 function hex(x) {var hexDigits = new Array("0", "1", "2", "3", "4", "5", "6", "7", "8","9", "A", "B", "C", "D", "E", "F"); return isNaN(x) ? "00" : hexDigits[(x-x%16)/16] + hexDigits[x%16];}
 
@@ -48,7 +48,7 @@ function ctrlfd_start($_) {
       filter : function(self) {
         if (self.nodeType == 1) {
           var tag = self.tagName.toLowerCase();
-          return !(self.className == 'ctrlfd' || tag == 'head' || tag == 'img' || tag == 'script');
+          return !(self.className.match('ctrlfd') || tag == 'head' || tag == 'img' || tag == 'script');
         } else {
           return true;
         }
@@ -77,7 +77,7 @@ function ctrlfd_start($_) {
       },
 
       init : function() {
-        $.ctrlfd.settings.init = true;
+        $_.ctrlfd.settings.init = true;
       },
 
       finish : function() {
@@ -108,13 +108,27 @@ function ctrlfd_start($_) {
 
         /*if ($_.ctrlfd.settings.hide_bg) $_('body *, body, html').each(function() {$_(this).addClass('bg_ctrlfd');});*/
 
-        $.ctrlfd.settings.finish = true;
+        $_.ctrlfd.settings.finish = true;
       }
     });
   })($_);
   
+  $(window).ready(function() {
+    /* Remove some shitty ads */
+    $('iframe, a[href~=atdmt], script[src~=doubleclick]').remove();
+  });
 
-  $_.ctrlfd('html', '#000000');
+  $_(document).ready(function() {
+    $_.ctrlfd.settings.md5 = -1;
+    $_.ctrlfd('html', '#000000');
+
+    /* setTimeout(function() {
+      if ($_.ctrlfd.settings.md5 != $('*').size()) {
+        $_.ctrlfd('html', '#000000');
+        $_.ctrlfd.settings.md5 = $('*').size();
+      }
+    }, 2000); */
+  });
 }
 
 

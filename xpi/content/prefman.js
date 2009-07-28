@@ -1,5 +1,5 @@
-function ctrlfd_PrefManager() {
-	var startPoint="ctrlfd.";
+function compileduserscript_PrefManager() {
+	var startPoint="compileduserscript.";
 
 	var pref=Components.classes["@mozilla.org/preferences-service;1"].
 		getService(Components.interfaces.nsIPrefService).

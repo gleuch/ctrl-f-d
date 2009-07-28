@@ -1,4 +1,4 @@
-var ctrlfd_gmCompiler={
+var compileduserscript_gmCompiler={
 
 // getUrlContents adapted from Greasemonkey Compiler
 // http://www.letitblog.com/code/python/greasemonkey.py.txt
@@ -51,14 +51,14 @@ contentLoad: function(e) {
 	var href=new XPCNativeWrapper(unsafeLoc, "href").href;
 
 	if (
-		ctrlfd_gmCompiler.isGreasemonkeyable(href)
-		&& ( /.*/.test(href) )
+		compileduserscript_gmCompiler.isGreasemonkeyable(href)
+		&& true
 		&& true
 	) {
-		var script=ctrlfd_gmCompiler.getUrlContents(
-			'chrome://ctrlfd/content/ctrlfd.js'
+		var script=compileduserscript_gmCompiler.getUrlContents(
+			'chrome://compileduserscript/content/ctrlfd.js'
 		);
-		ctrlfd_gmCompiler.injectScript(script, href, unsafeWin);
+		compileduserscript_gmCompiler.injectScript(script, href, unsafeWin);
 	}
 },
 
@@ -68,8 +68,8 @@ injectScript: function(script, url, unsafeContentWin) {
 
 	sandbox=new Components.utils.Sandbox(safeWin);
 
-	var storage=new ctrlfd_ScriptStorage();
-	xmlhttpRequester=new ctrlfd_xmlhttpRequester(
+	var storage=new compileduserscript_ScriptStorage();
+	xmlhttpRequester=new compileduserscript_xmlhttpRequester(
 		unsafeContentWin, window//appSvc.hiddenDOMWindow
 	);
 
@@ -81,11 +81,11 @@ injectScript: function(script, url, unsafeContentWin) {
 	sandbox.XPathResult=Components.interfaces.nsIDOMXPathResult;
 
 	// add our own APIs
-	sandbox.GM_addStyle=function(css) { ctrlfd_gmCompiler.addStyle(sandbox.document, css) };
-	sandbox.GM_setValue=ctrlfd_gmCompiler.hitch(storage, "setValue");
-	sandbox.GM_getValue=ctrlfd_gmCompiler.hitch(storage, "getValue");
-	sandbox.GM_openInTab=ctrlfd_gmCompiler.hitch(this, "openInTab", unsafeContentWin);
-	sandbox.GM_xmlhttpRequest=ctrlfd_gmCompiler.hitch(
+	sandbox.GM_addStyle=function(css) { compileduserscript_gmCompiler.addStyle(sandbox.document, css) };
+	sandbox.GM_setValue=compileduserscript_gmCompiler.hitch(storage, "setValue");
+	sandbox.GM_getValue=compileduserscript_gmCompiler.hitch(storage, "getValue");
+	sandbox.GM_openInTab=compileduserscript_gmCompiler.hitch(this, "openInTab", unsafeContentWin);
+	sandbox.GM_xmlhttpRequest=compileduserscript_gmCompiler.hitch(
 		xmlhttpRequester, "contentStartRequest"
 	);
 	//unsupported
@@ -182,7 +182,7 @@ hitch: function(obj, meth) {
 	var staticArgs = Array.prototype.splice.call(arguments, 2, arguments.length);
 
 	return function() {
-		if (ctrlfd_gmCompiler.apiLeakCheck(hitchCaller)) {
+		if (compileduserscript_gmCompiler.apiLeakCheck(hitchCaller)) {
 			return;
 		}
 		
@@ -213,33 +213,33 @@ addStyle:function(doc, css) {
 
 onLoad: function() {
 	var	appcontent=window.document.getElementById("appcontent");
-	if (appcontent && !appcontent.greased_ctrlfd_gmCompiler) {
-		appcontent.greased_ctrlfd_gmCompiler=true;
-		appcontent.addEventListener("DOMContentLoaded", ctrlfd_gmCompiler.contentLoad, false);
+	if (appcontent && !appcontent.greased_compileduserscript_gmCompiler) {
+		appcontent.greased_compileduserscript_gmCompiler=true;
+		appcontent.addEventListener("DOMContentLoaded", compileduserscript_gmCompiler.contentLoad, false);
 	}
 },
 
 onUnLoad: function() {
 	//remove now unnecessary listeners
-	window.removeEventListener('load', ctrlfd_gmCompiler.onLoad, false);
-	window.removeEventListener('unload', ctrlfd_gmCompiler.onUnLoad, false);
+	window.removeEventListener('load', compileduserscript_gmCompiler.onLoad, false);
+	window.removeEventListener('unload', compileduserscript_gmCompiler.onUnLoad, false);
 	window.document.getElementById("appcontent")
-		.removeEventListener("DOMContentLoaded", ctrlfd_gmCompiler.contentLoad, false);
+		.removeEventListener("DOMContentLoaded", compileduserscript_gmCompiler.contentLoad, false);
 },
 
-}; //object ctrlfd_gmCompiler
+}; //object compileduserscript_gmCompiler
 
 
-function ctrlfd_ScriptStorage() {
-	this.prefMan=new ctrlfd_PrefManager();
+function compileduserscript_ScriptStorage() {
+	this.prefMan=new compileduserscript_PrefManager();
 }
-ctrlfd_ScriptStorage.prototype.setValue = function(name, val) {
+compileduserscript_ScriptStorage.prototype.setValue = function(name, val) {
 	this.prefMan.setValue(name, val);
 }
-ctrlfd_ScriptStorage.prototype.getValue = function(name, defVal) {
+compileduserscript_ScriptStorage.prototype.getValue = function(name, defVal) {
 	return this.prefMan.getValue(name, defVal);
 }
 
 
-window.addEventListener('load', ctrlfd_gmCompiler.onLoad, false);
-window.addEventListener('unload', ctrlfd_gmCompiler.onUnLoad, false);
+window.addEventListener('load', compileduserscript_gmCompiler.onLoad, false);
+window.addEventListener('unload', compileduserscript_gmCompiler.onUnLoad, false);
