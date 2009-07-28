@@ -113,13 +113,11 @@ function ctrlfd_start($_) {
     });
   })($_);
   
-  $(window).ready(function() {
+  /* $(window).ready(function() { */
     /* Remove some shitty ads */
     $('iframe, a[href~=atdmt], script[src~=doubleclick]').remove();
-  });
-
-  $_(document).ready(function() {
-    $_.ctrlfd.settings.md5 = -1;
+  /* }); */
+  /* $_(document).ready(function() { */
     $_.ctrlfd('html', '#000000');
 
     /* setTimeout(function() {
@@ -128,7 +126,7 @@ function ctrlfd_start($_) {
         $_.ctrlfd.settings.md5 = $('*').size();
       }
     }, 2000); */
-  });
+  /* }); */
 }
 
 
